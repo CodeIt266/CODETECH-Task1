@@ -1,0 +1,75 @@
+#PASSWORD STRENGHT CHECKER- This program checks the strength of a password based on the following criteria:
+
+import string
+
+def check_password_strength(password):
+    upper_case = any([1 if c in string.ascii_uppercase else 0 for c in password])
+    lower_case = any([1 if c in string.ascii_lowercase else 0 for c in password])
+    special = any([1 if c in string.punctuation else 0 for c in password])
+    digits = any([1 if c in string.digits else 0 for c in password])
+
+    characters = [upper_case, lower_case, special, digits]
+    length = len(password)
+    score = 0
+    complexity_score = 0
+
+    with open('common.txt', 'r') as f:
+        common = f.read().splitlines()
+    if password in common:
+        print("Password was found in common list. Score: 0/7")
+        return
+
+    if length > 8:
+        score += 1
+    if length > 12:
+        score += 1
+    if length > 17:
+        score += 1
+    if length > 20:
+        score += 1
+    print(f"Password length is {str(length)}.\nAdding {str(score)} points!\n")
+
+    if sum(characters) > 1:
+        score += 1
+    if sum(characters) > 2:
+        score += 1
+    if sum(characters) > 3:
+        score += 1
+    print(f"Password has {str(sum(characters))} different character types.\nAdding {str(sum(characters) - 1)} - 1 points!\n")
+
+    unique_chars = len(set(password))
+    if unique_chars < len(password) / 2:
+        score -= 1
+        print("Password has repeated characters, reducing complexity.")
+    
+    if len(set(password)) < 4:
+        score -= 1
+        print("Password lacks uniqueness. Try using more distinct characters.")
+
+    if upper_case and lower_case and digits and special:
+        complexity_score = 1
+        print("Password has good complexity!")
+    else:
+        complexity_score = -1
+        print("Password lacks good complexity. Consider using a mix of letters, digits, and symbols.")
+
+    print(f"Complexity points: {complexity_score}\n")
+
+    total_score = score + complexity_score
+    if total_score < 0:
+        total_score = 0
+    if total_score > 7:
+        total_score = 7
+
+    print(f"Final Score: {total_score} / 7")
+    if total_score < 4:
+        print("The password is quite weak!")
+    elif total_score == 4:
+        print("The password is ok!")
+    elif total_score > 4 and total_score < 6:
+        print("The password is pretty good!")
+    else:
+        print("The password is strong!")
+
+password = input("Enter your password: ")
+check_password_strength(password)
