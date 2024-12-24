@@ -1,9 +1,9 @@
-Name: PRANJALI VITTHAL CHAVAN
-Company: CODTECH IT SOLUTIONS
-Intern ID: CT08DHG
-Domain: Cyber Security & Ethical Hacking
-Duration: December 2024 to January 2025
-Mentor: Neela Santhosh Kumar
+Name: PRANJALI VITTHAL CHAVAN\n
+Company: CODTECH IT SOLUTIONS\n
+Intern ID: CT08DHG\n
+Domain: Cyber Security & Ethical Hacking\n
+Duration: December 2024 to January 2025\n
+Mentor: Neela Santhosh Kumar\n
 
 Overview of the Project
 
