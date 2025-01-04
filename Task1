@@ -1,4 +1,5 @@
 #PASSWORD STRENGHT CHECKER- This program checks the strength of a password based on the following criteria:
+#python file
 
 import string
 
